@@ -5,16 +5,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import jakarta.persistence.Entity;
 
 @Entity
-@Data
-@AllArgsConstructor
+//@Data
+//@AllArgsConstructor
 @ToString
+@Getter
+@Setter
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,5 +53,7 @@ public class Student {
     // Setter for 'grade'
     public void setGrade(double grade) {
         this.grade = grade;
+    }
+    public Student() {
     }
 }

@@ -1,8 +1,10 @@
-# application.yaml (default configuration)
-spring:
-#  profiles:
-#    active: dev  # This sets the active profile to 'prod'
+springdoc:
+  api-docs:
+    path: /v3/api-docs   # Path for OpenAPI documentation
+  swagger-ui:
+    path: /swagger-ui.html   # Path for Swagger UI
 
+spring:
   datasource:
     url: jdbc:mysql://localhost:3306/School?allowPublicKeyRetrieval=true&useSSL=false
     username: root
@@ -14,14 +16,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-
 server:
   port: 8080
 
-springdoc:
-  api-docs:
-    path: /v3/api-docs   # Path for OpenAPI documentation
-  swagger-ui:
-    path: /swagger-ui.html   # Path for Swagger UI
 logging:
   config: classpath:log4j2.xml

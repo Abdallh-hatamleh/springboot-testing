@@ -1,18 +1,16 @@
-package com.example.idk;
+package com.example.idk.Controllers;
 
 import com.example.idk.Models.Student;
 import com.example.idk.Services.StudentService;
+import com.example.idk.dto.BaseResponse;
+import com.example.idk.dto.StudentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/students")
@@ -23,9 +21,15 @@ public class StudentController {
 
     private int nextId = 1;
     @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents()
+    public ResponseEntity<StudentResponse> getAllStudents(
+            @RequestParam(value = "pageNum",defaultValue = "0", required = false) int pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "5",required = false) int pageSize
+    )
     {
-        return ResponseEntity.ok(studentService.getAllStudents());
+        StudentResponse students = studentService.getAllStudents(pageNum,pageSize);
+        System.out.println(students);
+//        BaseResponse<StudentResponse> response = new BaseResponse<>("OKAY", students, "Students Retrieved");
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/top3")
